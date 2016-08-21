@@ -1,5 +1,6 @@
 var tmi = require('tmi.js');
-var config = require('./config.js')
+var config = require('./config.js');
+var fs = require('fs');
 
 var options = {
     options: {
@@ -40,6 +41,20 @@ client.on("chat", function (channel, userstate, message, self) {
     if(message == "!everyone"){
         client.say(config.broadname, "This command can be used by anyone!");
     }
+
+    // Kappa Counter
+    if(message.includes("Kappa")){
+        var oldkappa = fs.readFileSync("counter/kappacount");
+        var readkappa = parseInt(oldkappa);
+		var newkappa = (readkappa + 1);
+        fs.writeFileSync("counter/kappacount", newkappa);
+    }
+
+	if(message == "!kappa"){
+		var kappanumber = fs.readFileSync("counter/kappacount");
+		client.say(config.broadname, "Total Kappa messages: " + kappanumber);
+	}
+
 });
 
 client.on("connected", function (address, port) {
