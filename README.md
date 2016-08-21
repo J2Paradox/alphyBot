@@ -1,8 +1,8 @@
 # alphyBot
 A basic Twitch bot for (moderating chat and) using commands.
 
-## Installation 
-Install Node.js from the Node.js website:
+## Installation
+Install Node.js from the Node.js website: https://nodejs.org/en/download/
 
 Configure the config.js file with Notepad or other Editors.
 
