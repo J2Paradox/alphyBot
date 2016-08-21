@@ -32,7 +32,7 @@ client.on("chat", function (channel, userstate, message, self) {
 
 	// Moderator commands
     if(userstate.mod == true){
-        if(message == "!mondonly"){
+        if(message == "!modonly"){
             client.say(config.broadname, "This is a mod-only command!");
         }
     }
