@@ -1,6 +1,32 @@
 var tmi = require('tmi.js');
 var config = require('./config.js');
 var fs = require('fs');
+var app = require('http').createServer(handler)
+var io = require('socket.io')(app);
+
+// http handler
+app.listen(9000);
+
+function handler (req, res) {
+  fs.readFile(__dirname + '/index.html',
+  function (err, data) {
+    if (err) {
+      res.writeHead(500);
+      return res.end('Error loading index.html');
+    }
+
+    res.writeHead(200);
+    res.end(data);
+  });
+}
+
+// // Connection to bot
+io.on('connection', function (socket) {
+    console.log("HTTP CLIENT CONNECTED");
+});
+
+
+// config
 
 var options = {
     options: {
@@ -18,6 +44,8 @@ var options = {
     channels: config.channel
 };
 
+// Api listner
+
 var client = new tmi.client(options);
 client.connect();
 
@@ -26,24 +54,28 @@ client.on("chat", function (channel, userstate, message, self) {
 
 	// Broadcaster only commands
     if(userstate.username == config.broadname){
-        if(message == "!broadonly"){
+        if(message == "!#"){
             client.say(config.broadname, "This is a broadcaster only command");
         }
     }
 
 	// Moderator commands
     if(userstate.mod == true){
-        if(message == "!modonly"){
+        if(message == "!$"){
             client.say(config.broadname, "This is a mod-only command!");
         }
     }
 	// Commands that can be used by anyone
-    if(message == "!everyone"){
+    if(message == "!"){
         client.say(config.broadname, "This command can be used by anyone!");
     }
 
-    // Kappa Counter
+    // Kappa Detector
     if(message.includes("Kappa")){
+        console.log("KAPPA DETECTED")
+        // Kappa to overlay
+        io.emit('showemote', "Kappa");
+        // Kappa counter
         var oldkappa = fs.readFileSync("counter/kappacount");
         var readkappa = parseInt(oldkappa);
 		var newkappa = (readkappa + 1);
@@ -75,8 +107,11 @@ client.on("whisper", function (from, userstate, message, self) {
 
 	if (self) return;
 
-	if (message == "!part" && userstate.username == config.broadname && config.whispart == true){
+    console.log("WHISPER FROM: " + userstate.username + " MESSAGE: " + message)
+
+	if (message == "!part" && String(userstate.username) == config.broadname && config.whisppart == true){
 		client.whisper(config.broadname, "Bot is going to disconnect, byebye!");
-		client.disconnect;
+        console.log("CLIENT WISPER DC")
+		client.disconnect();
 	}
 });
