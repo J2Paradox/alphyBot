@@ -2,7 +2,7 @@
 // Do not enter the setting into the main file, because of the syntaxes.
 //
 // Twitch username of your bot (all lower case)
-exports.username = ""
+exports.username = "wertyoo"
 
 // OAUTH key of your bot
 exports.password = ""
@@ -14,7 +14,7 @@ exports.channel = [""]
 exports.broadname = ""
 
 // Enable remote shutdown of the bot with "!part" via whisper (true / false)
-exports.whisppart =
+exports.whisppart = ""
 
 // Whisper message when bot connects to the channel (true / false)
-exports.whiscon =
+exports.whiscon = ""
