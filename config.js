@@ -13,8 +13,8 @@ exports.channel = [""]
 // Broadcaster's twitch username (all lower case)
 exports.broadname = ""
 
-// Enable remote shutdown of the bot with "!part" via whisper (true / false) 
-exports.whisppart = 
+// Enable remote shutdown of the bot with "!part" via whisper (true / false)
+exports.whisppart =
 
 // Whisper message when bot connects to the channel (true / false)
 exports.whiscon =

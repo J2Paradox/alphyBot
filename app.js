@@ -1,33 +1,10 @@
 var tmi = require('tmi.js');
 var config = require('./config.js');
 var fs = require('fs');
-var app = require('http').createServer(handler)
-var io = require('socket.io')(app);
+// var app = require('http').createServer(handler)
+// var io = require('socket.io')(app);
 
-// http handler
-app.listen(9000);
-
-function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
-
-    res.writeHead(200);
-    res.end(data);
-  });
-}
-
-// // Connection to bot
-io.on('connection', function (socket) {
-    console.log("HTTP CLIENT CONNECTED");
-});
-
-
-// config
-
+// Configuration for Api
 var options = {
     options: {
         debug: true
@@ -44,49 +21,17 @@ var options = {
     channels: config.channel
 };
 
-// Api listner
-
+// Api Listner
 var client = new tmi.client(options);
 client.connect();
 
+// Chat stream
 client.on("chat", function (channel, userstate, message, self) {
     if (self) return;
-
-	// Broadcaster only commands
-    if(userstate.username == config.broadname){
-        if(message == "!#"){
-            client.say(config.broadname, "This is a broadcaster only command");
-        }
-    }
-
-	// Moderator commands
-    if(userstate.mod == true){
-        if(message == "!$"){
-            client.say(config.broadname, "This is a mod-only command!");
-        }
-    }
-	// Commands that can be used by anyone
-    if(message == "!"){
-        client.say(config.broadname, "This command can be used by anyone!");
-    }
-
+    // INSERT commands.hs HERE
     // Kappa Detector
-    if(message.includes("Kappa")){
-        console.log("KAPPA DETECTED")
-        // Kappa to overlay
-        io.emit('showemote', "Kappa");
-        // Kappa counter
-        var oldkappa = fs.readFileSync("counter/kappacount");
-        var readkappa = parseInt(oldkappa);
-		var newkappa = (readkappa + 1);
-        fs.writeFileSync("counter/kappacount", newkappa);
-    }
-
-	if(message == "!kappa"){
-		var kappanumber = fs.readFileSync("counter/kappacount");
-		client.say(config.broadname, "Total Kappa messages: " + kappanumber);
-	}
-
+    // INSERT emote_counter.js HERE
+    // TINSERT moderation.js HERE
 });
 
 client.on("connected", function (address, port) {
@@ -98,7 +43,7 @@ client.on("connected", function (address, port) {
 });
 
 client.on("disconnected", function (reason) {
-    client.whisper(config.broadname, "Bot disconnected to the channel!");
+    client.whisper(config.broadname, "Bot disconnected from the channel!");
     console.log("BOT DISCONNECTED, REASON: " + reason);
 });
 
