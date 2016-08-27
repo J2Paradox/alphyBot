@@ -28,6 +28,8 @@ client.connect();
 // Chat stream
 client.on("chat", function (channel, userstate, message, self) {
     if (self) return;
+    var commands = require('./commands')
+    commands.say(userstate, message);
     // INSERT commands.js HERE
     // INSERT emote_counter.js HERE
     // INSERT moderation.js HERE
