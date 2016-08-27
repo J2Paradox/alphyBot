@@ -5,7 +5,7 @@ module.exports = {
     init: function () {
         console.log(config.username)
     },
-    say: function (userState, message) {
+    say: function (client, userState, message) {
         // Broadcaster only commands
         if (userState.username == config.broadname) {
             if (message == "!#") {
@@ -26,6 +26,3 @@ module.exports = {
         }
     }
 }
-
-
-
