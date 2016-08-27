@@ -31,7 +31,7 @@ client.on("chat", function (channel, userstate, message, self) {
     // INSERT commands.hs HERE
     // Kappa Detector
     // INSERT emote_counter.js HERE
-    // TINSERT moderation.js HERE
+    // INSERT moderation.js HERE
 });
 
 client.on("connected", function (address, port) {
