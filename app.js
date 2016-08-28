@@ -29,15 +29,15 @@ client.connect();
 client.on("chat", function (channel, userstate, message, self) {
     if (self) return;
     // Commands
-    var commands = require('./modules/commands')
+    var commands = require('./modules/commands.js')
     commands.say(client, userstate, message);
 
     // Emote counters
-    var emote_counter = require('./modules/emote_counter')
+    var emote_counter = require('./modules/emote_counter.js')
     emote_counter.say(client, userstate, message);
 
     // Moderation tools
-    var moderation = require('.modules/moderation')
+    var moderation = require('./modules/moderation.js')
     moderation.say(client, userstate, message);
 });
 
@@ -51,7 +51,7 @@ client.on("connected", function (address, port) {
 
 client.on("disconnected", function (reason) {
     client.whisper(config.broadname, "Bot disconnected from the channel!");
-    console.log("BOT DISCONNECTED, REASON: " + reason);
+    console.log("BOT DISCONNECTED, REASON: " + reason.toUpperCase());
 });
 
 client.on("whisper", function (from, userstate, message, self) {
