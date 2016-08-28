@@ -61,7 +61,7 @@ client.on("whisper", function (from, userstate, message, self) {
 
     console.log("WHISPER FROM: " + userstate.username + " MESSAGE: " + message)
 
-	if (message == "!part" && String(userstate.username) == config.broadname && config.whisppart == true){
+	if (message.toLowerCase() == "!part" && String(userstate.username) == config.broadname && config.whisppart == true){
 		client.whisper(config.broadname, "Bot is going to disconnect, byebye!");
         console.log("CLIENT WISPER DC")
 		client.disconnect();
