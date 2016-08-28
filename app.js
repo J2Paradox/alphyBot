@@ -1,5 +1,5 @@
 var tmi = require('tmi.js');
-var config = require('./config.js');
+var config = require('./modules/config.json');
 var fs = require('fs');
 // var app = require('http').createServer(handler)
 // var io = require('socket.io')(app);
@@ -28,11 +28,17 @@ client.connect();
 // Chat stream
 client.on("chat", function (channel, userstate, message, self) {
     if (self) return;
-    var commands = require('./commands')
+    // Commands
+    var commands = require('./modules/commands')
     commands.say(client, userstate, message);
-    // INSERT commands.js HERE
-    // INSERT emote_counter.js HERE
-    // INSERT moderation.js HERE
+
+    // Emote counters
+    var emote_counter = require('./modules/emote_counter')
+    emote_counter.say(client, userstate, message);
+
+    // Moderation tools
+    var moderation = require('.modules/moderation')
+    moderation.say(client, userstate, message);
 });
 
 client.on("connected", function (address, port) {
