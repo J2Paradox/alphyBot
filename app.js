@@ -1,8 +1,17 @@
 var tmi = require('tmi.js');
 var config = require('./modules/config.json');
 var fs = require('fs');
-// var app = require('http').createServer(handler)
-// var io = require('socket.io')(app);
+var express = require('express');
+var app = express();
+
+// SERVER
+app.get('/', function (req, res) {
+  res.send('This is a place where alphyBot might be controlled with, some day ......');
+});
+
+app.listen(3000, function () {
+  console.log('alphyBot listing on port 3000!');
+});
 
 // Configuration for Api
 var options = {
@@ -39,6 +48,12 @@ client.on("chat", function (channel, userstate, message, self) {
     // Moderation tools
     var moderation = require('./modules/moderation.js')
     moderation.say(client, userstate, message);
+
+    // chat in browser? maybe workerino ? SPOILER: I DOESNT
+    // app.get('/', function (req, res) {
+    // res.send(parseInt(userstate.username) + ": " + message);
+    // });
+
 });
 
 client.on("connected", function (address, port) {

@@ -42,7 +42,7 @@ Open the console or terminal in the repository directory and type.
 
 ```
 npm install tmi.js --save
-npm install socket.io --save
+npm install express --save
 npm install nodemon --global
 ```
 
