@@ -1,17 +1,13 @@
 var tmi = require('tmi.js');
-var config = require('./modules/config.json');
+var config = require('./configs/config.json');
 var fs = require('fs');
 var express = require('express');
 var app = express();
 
 // SERVER
-app.get('/', function (req, res) {
-  res.send('This is a place where alphyBot might be controlled with, some day ......');
-});
-
-app.listen(3000, function () {
-  console.log('alphyBot listing on port 3000!');
-});
+var serverSettings = "There could be settings stored here someday."
+var alphServer = require('./server.js');
+alphServer.server(app, serverSettings)
 
 // Configuration for Api
 var options = {
@@ -42,8 +38,8 @@ client.on("chat", function (channel, userstate, message, self) {
     commands.say(client, userstate, message);
 
     // Emote counters
-    var emote_counter = require('./modules/emote_counter.js')
-    emote_counter.say(client, userstate, message);
+    var emoteCounter = require('./modules/emote_counter.js')
+    emoteCounter.say(client, userstate, message);
 
     // Moderation tools
     var moderation = require('./modules/moderation.js')
