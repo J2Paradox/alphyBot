@@ -7,5 +7,6 @@
     ],
     "broadname": "",
     "whisppart": true,
-    "whiscon": true
+    "whiscon": true,
+    "alphyServerMaster": "123456"
 }

@@ -6,8 +6,8 @@ var app = express();
 
 // SERVER
 var serverSettings = "There could be settings stored here someday."
-var alphServer = require('./server.js');
-alphServer.server(app, serverSettings)
+var alphyServer = require('./server.js');
+alphyServer.server()
 
 // Configuration for Api
 var twitchOptions = {

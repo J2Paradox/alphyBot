@@ -23,9 +23,11 @@ html
       width: 100%;
       }*/
       .full-width {
+      margin-top: 0;
+      top: 0;
       width: 250px;
-      height: 100%;
-      background-color: #66ff66;
+      height: 100vh;
+      background-color: #cce6ff;
       }
       .formtest {
       text-align: center;
@@ -69,15 +71,15 @@ html
         form(action='index.html', method='post')
           p
             | Username
-          input(type='text', name='name', value='', autocomplete='off')
+          input(type='text', name='alphName', value='', autocomplete='off')
           br
           br
           p
             | Password:
           br
-          input(type='password', name='name', value='')
+          input(type='password', name='alphPW', value='')
           br
           br
           br
           br
-          input#button(type='submit', name='name', value='Login')
+          input#button(type='submit', name='submit', value='Login')

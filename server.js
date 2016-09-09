@@ -1,12 +1,15 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const config = require('./configs/config.json');
+const bodyParser = require('body-parser')
+
 // SERVER
 module.exports = {
     init: function () {
         console.log("SERVER TEST")
     },
-    server: function (app, serverSettings) {
+    server: function () {
         // serverSettings
         var serverPort = 1337;
 
@@ -21,5 +24,7 @@ module.exports = {
         app.listen(serverPort, function () {
           console.log("alphyBot website avaible on port " + serverPort + "!");
         });
+        // app.express.use(bodyParser.json());
+        // app.express.use(bodyParser.urlencoded({ extended: false }));
     }
 }
