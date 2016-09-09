@@ -10,7 +10,7 @@ var alphServer = require('./server.js');
 alphServer.server(app, serverSettings)
 
 // Configuration for Api
-var options = {
+var twitchOptions = {
     options: {
         debug: true
     },
@@ -27,7 +27,7 @@ var options = {
 };
 
 // Api Listner
-var client = new tmi.client(options);
+var client = new tmi.client(twitchOptions);
 client.connect();
 
 // Chat stream
