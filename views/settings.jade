@@ -1,0 +1,119 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Settings
+    style(media='screen').
+      body {
+      font-family: Helvetica, sans-serif;
+      background-image: url("img/background.jpg");
+      background-color: #cccccc;*/
+      background-repeat:no-repeat;
+      background-size:cover;
+      }
+      #button {
+      background-color: #00ba12;
+      border: none;
+      color: white;
+      padding: 5px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+      }
+      #button2 {
+      background-color: #ff0000;
+      border: none;
+      color: white;
+      padding: 5px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+      }
+      #full-center {
+      position: fixed;
+      text-align: right;
+      top: -18px;
+      right: 10px;
+      width: 50%;
+      }
+      #centerMePls {
+      margin: 0 auto;
+      }
+      .full-width{
+      width: 30%;
+      height: 1000px;
+      margin: 0 auto;
+      }
+      input[type="text"], input[type="password"] {
+      padding: 10px;
+      border: none;
+      border-bottom: solid 2px #c9c9c9;
+      border-radius: 3px;
+      }
+  body(background='background.jpg')
+    #full-center
+      h2 alphyBot
+      img(height='80', src='img/picmate.png', alt='')
+    .full-width
+      h1 Settings
+      hr
+      form(action='index.html', method='post')
+        h2 General
+        p
+          | Enter Bot Account username (all lowercase):
+        input(type='text', name='name', value='', autocomplete='off')
+        br
+        br
+        p
+          | Enter OAuth token:
+        br
+        input(type='password', name='name', value='')
+        br
+        br
+        p
+          | Enter channel name (all lowercase):
+        br
+        input(type='text', name='name', value='', autocomplete='off')
+        br
+        h2 Connetion
+        br
+        label
+          input#cbox1(type='checkbox', value='whisppart', checked='checked')
+          |  Enable remote disconnect with whispers
+        br
+        br
+        br
+        label
+          input#cbox1(type='checkbox', value='whiscon', checked='checked')
+          |  Whisper you when bot connects to the channel
+        br
+        br
+        h2 Moderation
+        br
+        p
+          | Maximum character limit
+        input(type='text', name='name', value='', autocomplete='off')
+        br
+        br
+        p
+          | Time out duration
+        input(type='text', name='name', value='', autocomplete='off')
+        br
+        br
+        label
+          input#cbox1(type='checkbox', value='linktimeout')
+          |  Time out users who post links
+        br
+        br
+        br
+        input#button(type='submit', name='name', value='Save changes!')
+    br
+    hr
+    br
+    button#button2(type='button', name='button') Disconnect Bot
