@@ -4,6 +4,16 @@ var fs = require('fs');
 var express = require('express');
 var app = express();
 
+// CONSOLE LOG VARIABLES
+var dateData = String(new Date());
+var dateSplit = dateData.split(" ")
+var datePrint = dateSplit[1] + " " + dateSplit[2] + " " +
+    dateSplit[3] + " " + dateSplit[4]
+
+var dateL = "[" + datePrint + "] "
+var errorL = " [ ERROR ] "
+var infoL = " [ INFO ] "
+
 // SERVER
 var serverSettings = "There could be settings stored here someday."
 var alphyServer = require('./server.js');
@@ -45,15 +55,10 @@ client.on("chat", function (channel, userstate, message, self) {
     var moderation = require('./modules/moderation.js')
     moderation.say(client, userstate, message);
 
-    // chat in browser? maybe workerino ? SPOILER: I DOESNT
-    // app.get('/', function (req, res) {
-    // res.send(parseInt(userstate.username) + ": " + message);
-    // });
-
 });
 
 client.on("connected", function (address, port) {
-    console.log("BOT CONNECTED TO: " + address);
+    console.log(dateL + infoL + "BOT CONNECTED TO: " + address);
 
 	if(config.whiscon == true){
 		client.whisper(config.broadname, "Bot connected to the channel!");
@@ -62,7 +67,7 @@ client.on("connected", function (address, port) {
 
 client.on("disconnected", function (reason) {
     client.whisper(config.broadname, "Bot disconnected from the channel!");
-    console.log("BOT DISCONNECTED, REASON: " + reason.toUpperCase());
+    console.log(dateL + errorL + "BOT DISCONNECTED, REASON: " + reason.toUpperCase());
 });
 
 client.on("whisper", function (from, userstate, message, self) {
@@ -70,11 +75,11 @@ client.on("whisper", function (from, userstate, message, self) {
 
 	if (self) return;
 
-    console.log("WHISPER FROM: " + userstate.username + " MESSAGE: " + message)
+    console.log(dateL + infoL + "WHISPER FROM: " + userstate.username + " MESSAGE: " + message)
 
 	if (message.toLowerCase() == "!part" && String(userstate.username) == config.broadname && config.whisppart == true){
 		client.whisper(config.broadname, "Bot is going to disconnect, byebye!");
-        console.log("CLIENT WISPER DC")
+        console.log(dateL + infoL + "CLIENT WISPER DC")
 		client.disconnect();
 	}
 });

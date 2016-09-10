@@ -55,6 +55,9 @@ html
       margin: 4px 2px;
       cursor: pointer;
       }
+      #red {
+      color: #ff0000;
+      }
   body
     .full-width
       br
@@ -68,18 +71,17 @@ html
         h1 Welcome to alphyBot!
         br
         br
-        form(role='form' action='/settings?form=login', method='POST')
-          p
-            | Username
+        form(role='form', action='/settings?form=login', method='POST')
+          p Username
           input(type='text', name='alphName', value='', autocomplete='off')
           br
           br
-          p
-            | Password:
+          p Password:
           br
           input(type='password', name='alphPW', value='')
           br
           br
-          br
+          p#red
+            | Wrong Password!
           br
           input#button(type='submit', name='submit', value='Login')
