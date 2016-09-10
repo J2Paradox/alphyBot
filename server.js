@@ -1,3 +1,4 @@
+// IMPORTS
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -18,25 +19,24 @@ module.exports = {
         console.log(dateL + infoL + "SERVER TEST")
     },
     server: function () {
-        // serverSettings
+        // SERVER SETTINGS
         var serverPort = 1337;
-
-        // SERVER ROUTES
         app.use(require('body-parser').urlencoded({extended: true}));
-
         app.set('views', __dirname + '/views');
         app.set('view engine', 'jade');
         app.use(express.static(__dirname + '/public'));
 
+        // SERVER ROUTES
         app.get('/', function(req, res){
             res.render('index');
         });
 
+        // LOGIN PARSER
         app.post('/settings', function (req, res) {
             console.log(dateL + infoL + "DATA FROM " + req.query.form);
             console.log(dateL + infoL + "USER: " + req.body.alphName)
             console.log(dateL + infoL + "PASS :" + req.body.alphPW)
-            // res.redirect(303, 'settings')
+
             if (req.body.alphPW == config.alphyServerMaster){
                 res.render('settings')
                 console.log(dateL + infoL + "GRANTED ACCESS")
@@ -46,22 +46,24 @@ module.exports = {
             };
         });
 
+        // 404 PAGE: PAGE NOT FOUND
         app.use(function (req, res) {
             res.type('text/html');
             res.status(404);
             res.render('404');
         });
 
+        // 500 PAGE: SERVER ERROR
         app.use(function (err, req, res, next) {
             console.error(err.stack);
             res.status(500);
-            res.send("SERVER ERROR");
+            res.render('500');
         });
 
+        // SERVER LISTEN
         app.listen(serverPort, function () {
-          console.log(dateL + infoL + "alphyBot website avaible on port " + serverPort + "!");
+          console.log(dateL + infoL + "alphyBot website avaible on port "
+          + serverPort + "!");
         });
-        // app.express.use(bodyParser.json());
-        // app.express.use(bodyParser.urlencoded({ extended: false }));
     }
 }
