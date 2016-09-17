@@ -16,11 +16,6 @@ var dateL = "[" + datePrint + "] "
 const errorL = " [ ERROR ] "
 const infoL = " [ INFO ] "
 
-// SERVER
-var serverSettings = "There could be settings stored here someday."
-var alphyServer = require('./server.js');
-alphyServer.server()
-
 // TWITCH API CONFIG
 var twitchOptions = {
     options: {
@@ -40,7 +35,12 @@ var twitchOptions = {
 
 // API LISTENER
 var client = new tmi.client(twitchOptions);
-client.connect();
+// client.connect();
+
+// SERVER
+var serverSettings = "There could be settings stored here someday."
+var alphyServer = require('./server.js');
+alphyServer.server(twitchOptions)
 
 // CHAT STREAM
 client.on("chat", function (channel, userstate, message, self) {

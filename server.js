@@ -2,7 +2,11 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const config = require('./configs/config.json');
+var config = require('./configs/config.json');
+const tmi = require('tmi.js');
+const io = require('socket.io')();
+
+// const clrBot = require('');
 
 // CONSOLE LOG VARIABLES
 var dateData = String(new Date());
@@ -18,7 +22,7 @@ module.exports = {
     init: function () {
         console.log(dateL + infoL + "SERVER TEST")
     },
-    server: function () {
+    server: function (twitchOptions) {
         // SERVER SETTINGS
         var serverPort = 1337;
         app.use(require('body-parser').urlencoded({extended: true}));
@@ -26,9 +30,27 @@ module.exports = {
         app.set('view engine', 'jade');
         app.use(express.static(__dirname + '/public'));
 
+        // CLR
+        var client = new tmi.client(twitchOptions);
+        client.connect();
+
+        // CHAT STREAM
+        client.on("chat", function (channel, userstate, message, self) {
+            if (self) return;
+
+            if (message.includes("Kappa")){
+                console.log(dateL + infoL + "KAPPA DETECTED")
+                io.emit('showE', 25)
+            };
+        });
+
         // SERVER ROUTES
         app.get('/', function(req, res){
             res.render('index');
+        });
+
+        app.get('/clr', function(req, res){
+            res.render('clr');
         });
 
         // LOGIN PARSER
@@ -46,19 +68,14 @@ module.exports = {
             };
         });
 
-        // 404 PAGE: PAGE NOT FOUND
-        app.use(function (req, res) {
-            res.type('text/html');
-            res.status(404);
-            res.render('404');
-        });
+        app.get('*', (req, res) => res.render('404'));
 
-        // 500 PAGE: SERVER ERROR
-        app.use(function (err, req, res, next) {
-            console.error(err.stack);
-            res.status(500);
-            res.render('500');
-        });
+        // // 500 PAGE: SERVER ERROR
+        // app.use(function (err, req, res, next) {
+        //     console.error(err.stack);
+        //     res.status(500);
+        //     res.render('500');
+        // });
 
         // SERVER LISTEN
         app.listen(serverPort, function () {

@@ -1,5 +1,5 @@
 var fs = require('fs');
-var config = require('./config')
+var config = require('./configs/config.json');
 
 module.exports = {
     init: function () {
@@ -57,4 +57,3 @@ module.exports = {
 
     }
 }
-

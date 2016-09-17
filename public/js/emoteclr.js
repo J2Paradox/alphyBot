@@ -1,4 +1,5 @@
 var canvas = document.querySelector('#x');
+var socket = io('http://localhost:1337'); 
 
 function sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
@@ -59,3 +60,7 @@ function showEmote(eID) {
         document.body.removeChild(remImg)
     })
 };
+
+socket.on('showE', function (eID) {
+    showEmote(eID)
+});
