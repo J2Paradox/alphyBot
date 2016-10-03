@@ -68,7 +68,7 @@ module.exports = {
             };
         });
 
-        app.get('*', (req, res) => res.render('404'));
+        // app.get('*', (req, res) => res.render('404'));
 
         // // 500 PAGE: SERVER ERROR
         // app.use(function (err, req, res, next) {
