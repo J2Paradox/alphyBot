@@ -23,7 +23,7 @@ CREATE DATABASE alphybot;
 exit;
 ```
 
-Create a 'configs/config.json' file and use the scheme for the config file
+Create a 'configs/config.json' file and use this scheme for the config file:
 
 ```
 {
