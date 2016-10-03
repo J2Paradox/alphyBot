@@ -1,9 +1,16 @@
 {
-    "botname": "",
-    "password": "",
-    "channel": [
-        "",
-        ""
-    ],
-    "broadname": ""
+    "twitch": {
+        "botname": "",
+        "password": "",
+        "channel": ["",""],
+        "broadname": ""
+    },
+    "database": {
+        "dbuser": "",
+        "dbpassword": ""
+    },
+    "osu": {
+        "botname": "",
+        "password": ""
+    }
 }

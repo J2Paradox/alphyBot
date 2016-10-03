@@ -2,24 +2,40 @@
 A basic Twitch bot for (moderating chat and) using commands.
 
 ## Installation
-Install Node.js from the Node.js website: https://nodejs.org/en/download/
 
-If you're on Linux this would work too:
+Install node.js
 
 ```
 sudo apt-get install -y nodejs
 ```
 
-Configure the config.js file with Notepad or other Editors.
+Create Database
 
+```
+CREATE DATABASE alphybot;
+```
+
+Create a 'configs/config.json' file and use the scheme for the config file
+
+```
+{
+    "botname": "",
+    "password": "",
+    "channel": [
+        "",
+        ""
+    ],
+    "broadname": "",
+    "dbuser": "",
+    "dbpassword": ""
+}
+```
 
 !- ALL fields have to be filled in, otherwise the bot won't work -!
 
-Open the console or terminal in the repository directory and type.
-
+Install packages
 ```
 npm install
-npm install nodemon --global
 ```
 
 For a single execution type following in the repository directory:

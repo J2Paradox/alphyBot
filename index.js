@@ -22,10 +22,10 @@ var twitchOptions = {
     },
     identity: {
         // CHANGE IN CONFIG ONLY
-        username: config.botname,
-        password: config.password
+        username: config.twitch.botname,
+        password: config.twitch.password
     },
-    channels: config.channel
+    channels: config.twitch.channel
 };
 
 // API LISTENER
@@ -53,11 +53,11 @@ client.on("chat", function (channel, userstate, message, self) {
 // CONSOLE LOG CONNTECTION
 client.on("connected", function (address, port) {
     console.log(dateL + infoL + "BOT CONNECTED TO: " + address);
-    client.whisper(config.broadname, "Bot connected to the channel!");
+    client.whisper(config.twitch.broadname, "Bot connected to the channel!");
 });
 
 // CONSOLE LOG DISCONNECT
 client.on("disconnected", function (reason) {
-    client.whisper(config.broadname, "Bot disconnected from the channel!");
+    client.whisper(config.twitch.broadname, "Bot disconnected from the channel!");
     console.log(dateL + errorL + "BOT DISCONNECTED, REASON: " + reason.toUpperCase());
 });
