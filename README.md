@@ -3,6 +3,23 @@ A basic Twitch bot for (moderating chat and) using commands.
 
 ## Installation
 
+Tested on
+  * Ubuntu 16
+  * Debian 8
+Create a working directory
+
+```
+sudo mkdir /srv/alphybot
+```
+
+Install git:
+
+```
+sudo apt-get git
+cd /srv/alphybot
+git clone https://github.com/alphuite/alphyBot .
+```
+
 Install node.js
 
 ```
@@ -13,7 +30,7 @@ sudo apt-get install -y nodejs
 Install mySQL
 
 ```
-apt-get install mysql-server
+sudo apt-get install mysql-server
 ```
 
 Create Database
@@ -50,6 +67,7 @@ Create a 'configs/config.json' file and use this scheme for the config file:
 Install packages
 ```
 npm install
+npm install nodemon -g
 ```
 
 For a single execution type following in the repository directory:
