@@ -1,15 +1,17 @@
 // IMPORTS
 const tmi = require('tmi.js');
 const config = require('./configs/config.json');
+const database = require('./modules/initdatabase.js');
 
 // CONSOLE LOG VARIABLES
 var dateData = String(new Date());
 var dateSplit = dateData.split(" ")
 var datePrint = dateSplit[1] + " " + dateSplit[2] + " " +
     dateSplit[3] + " " + dateSplit[4]
-var dateL = "[" + datePrint + "] "
+var dateL = "[" + datePrint + "]"
 const errorL = " [ ERROR ] "
 const infoL = " [ INFO ] "
+const botversion = "DEV0.1.1"
 
 // TWITCH API CONFIG
 var twitchOptions = {
@@ -27,6 +29,8 @@ var twitchOptions = {
     },
     channels: config.twitch.channel
 };
+
+database.create();
 
 // API LISTENER
 var client = new tmi.client(twitchOptions);
@@ -52,8 +56,10 @@ client.on("chat", function (channel, userstate, message, self) {
 
 // CONSOLE LOG CONNTECTION
 client.on("connected", function (address, port) {
-    console.log(dateL + infoL + "BOT CONNECTED TO: " + address);
+    console.log(dateL + infoL + "alphyBot connected to: " + address);
     client.whisper(config.twitch.broadname, "Bot connected to the channel!");
+    client.say(config.twitch.broadname, "alphyBot connected to the chat @ " +
+    dateL + ". Running as version " + botversion);
 });
 
 // CONSOLE LOG DISCONNECT

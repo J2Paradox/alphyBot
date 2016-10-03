@@ -9,29 +9,42 @@ Install node.js
 sudo apt-get install -y nodejs
 ```
 
+Install mySQL
+
+```
+apt-get install mysql-server
+```
+
 Create Database
 
 ```
+mysql -u root -p
 CREATE DATABASE alphybot;
+exit;
 ```
 
 Create a 'configs/config.json' file and use the scheme for the config file
 
 ```
 {
-    "botname": "",
-    "password": "",
-    "channel": [
-        "",
-        ""
-    ],
-    "broadname": "",
-    "dbuser": "",
-    "dbpassword": ""
+    "twitch": {
+        "botname": "",
+        "password": "",
+        "channel": ["",""],
+        "broadname": ""
+    },
+    "database": {
+        "dbuser": "",
+        "dbpassword": ""
+    },
+    "osu": {
+        "botname": "",
+        "password": ""
+    }
 }
 ```
 
-!- ALL fields have to be filled in, otherwise the bot won't work -!
+### !- ALL fields have to be filled in, otherwise the bot won't work -!
 
 Install packages
 ```
