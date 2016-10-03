@@ -1,10 +1,14 @@
 {
   "name": "alphybot",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "A twitch bot for moderating chat, using commands and more.",
+  "main": "index.js",
+  "dependencies": {
+    "tmi.js": "^1.1.1"
+  },
+  "devDependencies": {},
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,12 +20,5 @@
   "bugs": {
     "url": "https://github.com/alphuite/alphyBot/issues"
   },
-  "homepage": "https://github.com/alphuite/alphyBot#readme",
-  "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "jade": "^1.11.0",
-    "socket.io": "^1.4.8",
-    "tmi.js": "^1.1.1"
-  }
+  "homepage": "https://github.com/alphuite/alphyBot#readme"
 }

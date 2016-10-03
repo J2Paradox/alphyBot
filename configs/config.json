@@ -1,12 +1,9 @@
 {
-    "username": "",
+    "botname": "",
     "password": "",
     "channel": [
         "",
         ""
     ],
-    "broadname": "",
-    "whisppart": true,
-    "whiscon": true,
-    "alphyServerMaster": "123456"
+    "broadname": ""
 }
