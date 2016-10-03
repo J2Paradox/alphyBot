@@ -4,6 +4,7 @@
   "description": "A twitch bot for moderating chat, using commands and more.",
   "main": "index.js",
   "dependencies": {
+    "mysql": "^2.11.1",
     "tmi.js": "^1.1.1"
   },
   "devDependencies": {},
