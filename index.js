@@ -30,9 +30,9 @@ var twitchOptions = {
     channels: config.twitch.channel
 };
 
-database.create();
+// database.create();
 
-// API LISTENER
+// API LISTENE
 var client = new tmi.client(twitchOptions);
 client.connect();
 

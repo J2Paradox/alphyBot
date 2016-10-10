@@ -1,4 +1,4 @@
-const config = require('./configs/config.json');
+var config = require('./configs/config.json');
 const mysql = require('mysql');
 
 // CONSOLE LOG VARIABLES
