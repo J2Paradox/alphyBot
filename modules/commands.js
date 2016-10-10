@@ -39,7 +39,7 @@ module.exports = {
         if (userState.username == config.twitch.broadname) {
             if (message == "!#") {
                 client.say(config.twitch.broadname, "This is a broadcaster only command");
-            }
+            };
             if (msgSplitBySpace[0].toLowerCase() == "!addcommand"){
                 connection.query(`INSERT INTO commands VALUES
                 (NULL, ` + msgSplitBySpace[1].toString() + `, `
@@ -67,7 +67,6 @@ module.exports = {
         // Commands that can be used by anyone
         if (message == "!") {
             client.say(config.twitch.broadname, "This command can be used by anyone!");
-        }
-
-    }
-}
+        };
+    };
+};
