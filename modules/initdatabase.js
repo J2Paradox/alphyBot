@@ -73,8 +73,8 @@ module.exports = {
                 + err);
             };
         });
-        connection.query(`INSERT INTO emotes VALUES
-        (NULL, "4Head", 354, 0);` function (err) {
+        connection.query('INSERT INTO emotes VALUES(NULL, "4Head", 354, 0);', 
+	function (err) {
             if (err){
                 console.log(dateL + errorL + "Coulnd't add 4Head emote to table: "
                 + err);

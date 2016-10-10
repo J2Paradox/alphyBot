@@ -1,13 +1,13 @@
 {
     "twitch": {
-        "botname": "",
-        "password": "",
-        "channel": ["",""],
-        "broadname": ""
+        "botname": "alphyBot",
+        "password": "test",
+        "channel": ["alphuite",""],
+        "broadname": "alphuite"
     },
     "database": {
-        "dbuser": "",
-        "dbpassword": ""
+        "dbuser": "root",
+        "dbpassword": "test"
     },
     "osu": {
         "botname": "",
