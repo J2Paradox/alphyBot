@@ -1,6 +1,3 @@
-var config = require('./configs/config.json');
-const mysql = require('mysql');
-
 // CONSOLE LOG VARIABLES
 var dateData = String(new Date());
 var dateSplit = dateData.split(" ")
@@ -9,31 +6,34 @@ var datePrint = dateSplit[1] + " " + dateSplit[2] + " " +
 var dateL = "[" + datePrint + "] "
 const errorL = " [ ERROR ] "
 const infoL = " [ INFO ] "
-const botversion = "DEV0.1.1"
 
-// DATABASE SETUP
-var connection = mysql.createConnection({
-    host : 'localhost',
-    user : config.database.dbuser,
-    password : config.database.dbpassword,
-    database : 'alphybot'
-});
+// MAIN
+module.exports = (container) => {
+    'use strict';
 
-connection.connect(function(err) {
-    if (err) {
-        console.error(dateL + errorL + "Couldn't conntect to DB" + err.stack);
-            return;
+    // lib start
+    const lib = {};
+
+    // here the config, "imported" from the container
+    const config = container.config;
+    const mysql = require('mysql');
+
+    // DATABASE SETUP
+    const connection = mysql.createConnection({
+        host : 'localhost',
+        user : config.database.dbuser,
+        password : config.database.dbpassword,
+        database : 'alphybot'
+    });
+
+    connection.connect(function(err) {
+        if (err) {
+            console.error(dateL + errorL + "Couldn't conntect to DB" + err.stack);
+        return;
     };
     console.log(dateL + infoL + 'Connected with ID: ' + connection.threadId);
-});
-
-// INIT DATABASE
-module.exports = {
-    init: function () {
-        console.log("test")
-    },
-    create: function () {
-        connection.query(`CREATE TABLE IF NOT EXISTS chatters(
+    });
+    connection.query(`CREATE TABLE IF NOT EXISTS chatters(
         chatter_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
         display_name VARCHAR(30) NOT NULL,
         username VARCHAR(30) NOT NULL,
@@ -73,12 +73,14 @@ module.exports = {
                 + err);
             };
         });
-        connection.query('INSERT INTO emotes VALUES(NULL, "4Head", 354, 0);', 
+        connection.query('INSERT INTO emotes VALUES(NULL, "4Head", 354, 0);',
 	function (err) {
             if (err){
                 console.log(dateL + errorL + "Coulnd't add 4Head emote to table: "
                 + err);
             };
         });
-    }
-}
+
+  // lib end
+  return lib;
+};

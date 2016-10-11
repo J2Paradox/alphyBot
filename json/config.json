@@ -1,0 +1,20 @@
+{
+    "info": {
+      "version": "TestV0.3-Rewritten",
+      "placeholder": "placeholder"
+    },
+    "twitch": {
+        "botname": "",
+        "password": "",
+        "channel": ["",""],
+        "broadname": ""
+    },
+    "database": {
+        "dbuser": "",
+        "dbpassword": ""
+    },
+    "osu": {
+        "botname": "",
+        "password": ""
+    }
+}

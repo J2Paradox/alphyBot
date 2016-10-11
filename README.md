@@ -46,6 +46,10 @@ Create a 'configs/config.json' file and use this scheme for the config file:
 
 ```
 {
+    "info": {
+      "version": "TestV0.3-Rewritten",
+      "placeholder": "placeholder"
+    },
     "twitch": {
         "botname": "",
         "password": "",
