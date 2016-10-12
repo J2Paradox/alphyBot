@@ -39,6 +39,7 @@ Create Database
 ```
 mysql -u root -p
 CREATE DATABASE alphybot;
+GRANT ALL PRIVLEGES ON alphybot.* TO 'alphybot'@'localhost' IDENTIFIED  by 'password';
 exit;
 ```
 
@@ -63,7 +64,7 @@ Create a 'json/config.json' file and use this scheme for the config file:
     "osu": {
         "botname": "",
         "password": "",
-	"username": ""
+	    "username": ""
     }
 }
 ```

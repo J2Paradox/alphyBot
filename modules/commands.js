@@ -71,7 +71,7 @@ module.exports = {
 
         if (msgSplitBySymbol[0].toString() == "!"){
             var query = connection.query(`SELECT echo FROM commands WHERE
-                trigger LIKE ?`, msgSplitBySpace[1].toString())
+                command LIKE ?`, msgSplitBySpace[1].toString())
             query.on('error', function (err) {
                 client.say(config.twitch.broadname, "@" + userState.username.toString()
                 +", Command not found.");
