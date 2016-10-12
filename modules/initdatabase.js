@@ -42,11 +42,12 @@ module.exports = (container) => {
             if (err){
                 console.log(dateL + errorL + "Couldn't create chatters table: "
                 + err);
+            } else {
+                 console.log(dateL + infoL + "Created chatters table.");
             };
         });
 
-        connection.query(`CREATE TABLE IF NOT EXISTS commands(
-        command_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        connection.query(`CREATE TABLE IF NOT EXISTS commands(command_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
         trigger VARCHAR(30) NOT NULL,
         echo VARCHAR(140) NOT NULL,
         count INT UNSIGNED NOT NULL,
@@ -54,6 +55,8 @@ module.exports = (container) => {
             if (err){
                 console.log(dateL + errorL + "Could't create commands table: "
                 +err);
+            }else {
+                console.log(dateL + infoL + "Created chatters table.");
             };
         });
         connection.query(`INSERT INTO commands VALUES
@@ -71,6 +74,8 @@ module.exports = (container) => {
             if (err){
                 console.log(dateL + errorL + "Coulnd't create emote table: "
                 + err);
+            }else {
+                console.log(dateL + infoL + "Created chatters table.");
             };
         });
         connection.query('INSERT INTO emotes VALUES(NULL, "4Head", 354, 0);',
