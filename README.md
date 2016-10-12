@@ -42,7 +42,7 @@ CREATE DATABASE alphybot;
 exit;
 ```
 
-Create a 'configs/config.json' file and use this scheme for the config file:
+Create a 'json/config.json' file and use this scheme for the config file:
 
 ```
 {
@@ -62,7 +62,8 @@ Create a 'configs/config.json' file and use this scheme for the config file:
     },
     "osu": {
         "botname": "",
-        "password": ""
+        "password": "",
+	"username": ""
     }
 }
 ```
