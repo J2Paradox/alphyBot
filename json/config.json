@@ -1,7 +1,8 @@
 {
     "info": {
       "version": "TestV0.3-Rewritten",
-      "placeholder": "placeholder"
+      "placeholder": "placeholder",
+      "comment": "in this file are sensetive infos, don't show it to anyone."
     },
     "twitch": {
         "botname": "",

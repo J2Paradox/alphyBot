@@ -39,3 +39,4 @@ jspm_packages
 
 # config folder with sensetive files
 configs/
+json/
