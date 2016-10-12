@@ -39,7 +39,7 @@ Create Database
 ```
 mysql -u root -p
 CREATE DATABASE alphybot;
-GRANT ALL PRIVLEGES ON alphybot.* TO 'alphybot'@'localhost' IDENTIFIED  by 'password';
+GRANT ALL PRIVILEGES ON alphybot.* TO 'alphybot'@'localhost' IDENTIFIED BY 'password';
 exit;
 ```
 

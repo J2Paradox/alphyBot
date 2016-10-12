@@ -40,9 +40,9 @@ module.exports = {
                 client.say(config.twitch.broadname, "This is a broadcaster only command");
             };
             if (msgSplitBySpace[0].toLowerCase() == "!addcommand"){
-                connection.query(`INSERT INTO commands VALUES
-                (NULL, ?, ?, 0, NOW())`, msgSplitBySpace[1].toString(),
-                msgSplitBySpace[2].toString(), function(err) {
+                connection.query('INSERT INTO commands SET command_id=NULL,command=?,echo="' + 
+                msgSplitBySpace[2].toString() + '",count=0,created=NOW()', msgSplitBySpace[1].toString(), 
+                function(err) {
                     if (err){
                         console.log(dateL + errorL + "Could't add command: "
                         + err);
@@ -71,15 +71,15 @@ module.exports = {
 
         if (msgSplitBySymbol[0].toString() == "!"){
             var query = connection.query(`SELECT echo FROM commands WHERE
-                command LIKE ?`, msgSplitBySpace[1].toString())
+                command LIKE ?`, msgSplitBySpace[0])
             query.on('error', function (err) {
                 client.say(config.twitch.broadname, "@" + userState.username.toString()
                 +", Command not found.");
-            query.on('result' function (row) {
-                client.say(config.twitch.broadname, "@" + userState.username.toString()
-                + row.toString());
             });
+            query.on('result', function (row) {
+                client.say(config.twitch.broadname, "@" + userState.username.toString()
+                + ", " + row.toString());
             });
         };
-    };
+    }
 };

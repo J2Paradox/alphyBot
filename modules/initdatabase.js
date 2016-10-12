@@ -60,7 +60,7 @@ module.exports = (container) => {
             };
         });
         connection.query(`INSERT INTO commands VALUES
-        (NULL, "test", "this is a test message", 0, NOW())`, function(err) {
+        (NULL, "!test", "this is a test message", 0, NOW())`, function(err) {
             if (err){
                 console.log(dateL + errorL + "Could't add test command: "
                 + err);
