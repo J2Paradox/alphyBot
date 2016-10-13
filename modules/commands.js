@@ -40,9 +40,16 @@ module.exports = {
                 client.say(config.twitch.broadname, "This is a broadcaster only command");
             };
             if (msgSplitBySpace[0].toLowerCase() == "!addcommand"){
-                connection.query('INSERT INTO commands SET command_id=NULL,command=?,echo="' + 
-                msgSplitBySpace[2].toString() + '",count=0,created=NOW()', msgSplitBySpace[1].toString(), 
-                function(err) {
+                var trigger = msgSplitBySpace[1].toString();
+                var echo = msgSplitBySpace[2].toString();
+
+                var command = {
+                    command: trigger,
+                    echo: echo,
+                    count: 0,
+                    created: 'NOW()'
+                };
+                connection.query('INSERT INTO commands SET ?', command, function(err) {
                     if (err){
                         console.log(dateL + errorL + "Could't add command: "
                         + err);
@@ -77,6 +84,7 @@ module.exports = {
                 +", Command not found.");
             });
             query.on('result', function (row) {
+                console.log(row);
                 client.say(config.twitch.broadname, "@" + userState.username.toString()
                 + ", " + row.toString());
             });

@@ -51,7 +51,8 @@ module.exports = (container) => {
         command VARCHAR(30) NOT NULL,
         echo VARCHAR(140) NOT NULL,
         count INT UNSIGNED NOT NULL,
-        created TIMESTAMP);`, function (err) {
+        created TIMESTAMP
+        CONSTRAINT uq_command UNIQUE (command));`, function (err) {
             if (err){
                 console.log(dateL + errorL + "Could't create commands table: "
                 +err);
@@ -67,10 +68,11 @@ module.exports = (container) => {
             };
         });
         connection.query(`CREATE TABLE IF NOT EXISTS emotes(
-        emote_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        emote_id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY,
         emote_name VARCHAR(30) NOT NULL,
         image_id INT UNSIGNED NOT NULL,
-        emote_count INT UNSIGNED NOT NULL);`, function (err) {
+        emote_count INT UNSIGNED NOT NULL
+        CONSTRAINT uq_image_id UNIQUE (image_id));`, function (err) {
             if (err){
                 console.log(dateL + errorL + "Coulnd't create emote table: "
                 + err);
