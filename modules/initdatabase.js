@@ -51,7 +51,6 @@ module.exports = (container) => {
         command VARCHAR(30) NOT NULL,
         echo VARCHAR(140) NOT NULL,
         count INT UNSIGNED NOT NULL,
-        created TIMESTAMP
         CONSTRAINT uq_command UNIQUE (command));`, function (err) {
             if (err){
                 console.log(dateL + errorL + "Could't create commands table: "
@@ -61,7 +60,7 @@ module.exports = (container) => {
             };
         });
         connection.query(`INSERT INTO commands VALUES
-        (NULL, "!test", "this is a test message", 0, NOW())`, function(err) {
+        (NULL, "!test", "this is a test message", 0)`, function(err) {
             if (err){
                 console.log(dateL + errorL + "Could't add test command: "
                 + err);

@@ -46,8 +46,7 @@ module.exports = {
                 var command = {
                     command: trigger,
                     echo: echo,
-                    count: 0,
-                    created: 'NOW()'
+                    count: 0
                 };
                 connection.query('INSERT INTO commands SET ?', command, function(err) {
                     if (err){
@@ -86,7 +85,7 @@ module.exports = {
             query.on('result', function (row) {
                 console.log(row);
                 client.say(config.twitch.broadname, "@" + userState.username.toString()
-                + ", " + row.toString());
+                + ", " + row.echo.toString());
             });
         };
     }
