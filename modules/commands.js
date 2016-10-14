@@ -80,21 +80,19 @@ module.exports = {
 
         if (msgSplitBySymbol[0].toString() == "!"){
             var trigger = msgSplitBySpace[0];
-            var query = connection.query('SELECT echo FROM commands WHERE command LIKE ?',
+            var query = connection.query('SELECT echo,count FROM commands WHERE command LIKE ?',
             trigger)
             query.on('error', function (err) {
                 client.say(config.twitch.broadname, "@" + userState.username.toString()
                 +", Command not found.");
             });
             query.on('result', function (row) {
-                // console.log(row);
+                console.log(row.count);
                 client.say(config.twitch.broadname, "@" + userState.username.toString()
                 + ", " + row.echo.toString());
-                var getcount = connection.query('SELECT count FROM commands WHERE command=?;', trigger);
-                getcount.on('result', function(row){
-                    var result = row.count + 1;
-                    connection.query('UPDATE commands SET count=' + result + 'WHERE command=?;', trigger);
-                });
+                var result = row.count + 1;
+                console.log(dateL + infoL + "added " + result + " to the command " + trigger);
+                connection.query('UPDATE commands SET count=' + result + 'WHERE command LIKE ?;', trigger);
             });
         };
 
