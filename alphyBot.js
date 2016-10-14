@@ -41,7 +41,7 @@ const twitchOptions = {
 
 // Create the connection
 const client = new tmi.client(twitchOptions);
-client.connect;
+client.connect();
 
 // CHAT STREAM
 client.on("chat", function (channel, userstate, message, self) {
