@@ -23,7 +23,7 @@ module.exports = (container) => {
         host : 'localhost',
         user : config.database.dbuser,
         password : config.database.dbpassword,
-        database : 'alphybot'
+        database : config.database.db
     });
 
     connection.connect(function(err) {

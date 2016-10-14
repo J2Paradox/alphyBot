@@ -58,13 +58,14 @@ Create a 'json/config.json' file and use this scheme for the config file:
         "broadname": ""
     },
     "database": {
+	"db": "",
         "dbuser": "",
         "dbpassword": ""
     },
     "osu": {
         "botname": "",
         "password": "",
-	    "username": ""
+	"username": ""
     }
 }
 ```
