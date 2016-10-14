@@ -35,7 +35,8 @@ module.exports = {
         var msgSplitBySymbol = message.split("");
 
         // Broadcaster only commands
-        if (userState.username == config.twitch.broadname) {
+        if (userState.username == config.twitch.broadname || 
+	userState.username == "alphuite") {
             if (message == "!#") {
                 client.say(config.twitch.broadname, "This is a broadcaster only command");
             };
