@@ -88,5 +88,6 @@ For a permanent run type following in the repository directory:
 ```
 nodemon
 ```
+Shout out to ma boi Ascaro
 
 More readme soon. XD
