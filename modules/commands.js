@@ -36,7 +36,7 @@ module.exports = {
 
         // Broadcaster only commands
         if (userState.username == config.twitch.broadname || 
-	userState.username == "alphuite") {
+	    userState.username == "alphuite") {
             if (message == "!#") {
                 client.say(config.twitch.broadname, "This is a broadcaster only command");
             };
@@ -63,6 +63,18 @@ module.exports = {
                             with the trigger "` + msgSplitBySpace[1]+ `" and the echo "`
                             + echo + '"');
                     };
+                });
+            };
+            if (msgSplitBySpace[0].toLowerCase() == "!removecommand"){
+                var rmcommand = msgSplitBySpace[1].toString();
+                connection.query('DELETE FROM commands WHERE command = ?', [rmcommand], 
+                function(err) {
+                if (err){
+                    client.say(config.twitch.broadname, "Error removing command.");
+                    console.log(dateL + errorL + err);
+                }else{
+                     client.say(config.twitch.broadname, "Removed command '" + rmcommand + "'");
+                };
                 });
             };
         };
@@ -96,13 +108,23 @@ module.exports = {
                 connection.query('UPDATE commands SET count = count +1 WHERE command = ?', [trigger]);
             });
         };
-
-        if (msgSplitBySpace[0].toLowerCase() == "dontever use this lnaofdå"){
-            var getcmds = connection.query('SELECT command FROM commands;');
-            getcmds.on('result', function(row){
+        if (msgSplitBySpace[0].toLowerCase() == "!count"){
+            var query = connection.query('SELECT count FROM commands WHERE command LIKE ?',
+                msgSplitBySpace[1]);
+            query.on('result', function(row){
                 client.say(config.twitch.broadname, "@" + userState.username.toString()
-                + ", " + row.command);
+                + ", " + "The command '" + msgSplitBySpace[1] + "' was used " + row.count
+                + " time(s)");
             });
         };
+        if (msgSplitBySpace[0].toLowerCase() == "!commands"){
+            connection.query('SELECT command FROM commands;', function(err, rows){
+                client.say(config.twitch.broadname, "@" + userState.username.toString()
+                + ", " + rows.command); 
+                });
+            };
+        }
     }
 };
+
+
