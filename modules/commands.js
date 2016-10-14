@@ -41,7 +41,10 @@ module.exports = {
             };
             if (msgSplitBySpace[0].toLowerCase() == "!addcommand"){
                 var trigger = msgSplitBySpace[1].toString();
-                var echo = msgSplitBySpace[2].toString();
+                var echo =  msgSplitBySpace.splice(2, 
+                msgSplitBySpace.length).toString().replace(/,/g, " ");
+                console.log("COMMAND TEST " + echo);
+                console.log("COMMAND TEST " + echo.indexOf(2));
 
                 var command = {
                     command: trigger,
@@ -57,7 +60,7 @@ module.exports = {
                     }else{
                         client.say(config.twitch.broadname, `Successfully added command
                             with the trigger "` + msgSplitBySpace[1]+ `" and the echo "`
-                            + msgSplitBySpace[2] + '"');
+                            + echo + '"');
                     };
                 });
             };
@@ -86,6 +89,14 @@ module.exports = {
                 console.log(row);
                 client.say(config.twitch.broadname, "@" + userState.username.toString()
                 + ", " + row.echo.toString());
+            });
+        };
+
+        if (msgSplitBySpace[0].toLowerCase() == "dontever use this lnaofdå"){
+            var getcmds = connection.query('SELECT command FROM commands;');
+            getcmds.on('result', function(row){
+                client.say(config.twitch.broadname, "@" + userState.username.toString()
+                + ", " + row.command);
             });
         };
     }
