@@ -77,6 +77,27 @@ module.exports = {
                 };
                 });
             };
+            if (msgSplitBySpace[0].toLowerCase() == "!editcommand"){
+                var trigger = msgSplitBySpace[1].toString();
+                var echo =  msgSplitBySpace.splice(2,
+                msgSplitBySpace.length).toString().replace(/,/g, " ");
+
+                var command = {
+                    command: trigger,
+                    echo: echo
+                };
+
+                connection.query('UPDATE commands SET ? WHERE command = ?', [echo, trigger],
+                    function(err){
+                        if (err){
+                            console.log(dateL + errorL + err)
+                            client.say(config.twitch.broadname, "Error updating command!")
+                        }else{
+                            client.say(config.twitch.broadname, "Updated command '" + trigger
+                            + "'");
+                        };
+                    });
+            };
         };
 
         // Moderator commands
@@ -119,9 +140,14 @@ module.exports = {
         };
         if (msgSplitBySpace[0].toLowerCase() == "!commands"){
             connection.query('SELECT command FROM commands;', function(err, rows){
+                var commands = [];
+                Object.keys(rows).forEach(function(k){
+                    commands.push(rows[k].command);
+                });
+
                 client.say(config.twitch.broadname, "@" + userState.username.toString()
-                + ", " + rows.command);
+                + ", Available commands: " + commands.toString().replace(/,/g, ", "));
             });
         };
-    };
+    }
 };

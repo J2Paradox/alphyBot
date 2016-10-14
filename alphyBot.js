@@ -2,10 +2,10 @@
 var dateData = String(new Date());
 var dateSplit = dateData.split(" ")
 var datePrint = dateSplit[1] + " " + dateSplit[2] + " " +
-    dateSplit[3] + " " + dateSplit[4]
-var dateL = "[" + datePrint + "]"
-const errorL = " [ ERROR ] "
-const infoL = " [ INFO ] "
+    dateSplit[3] + " " + dateSplit[4];
+var dateL = "[" + datePrint + "]";
+const errorL = " [ ERROR ] ";
+const infoL = " [ INFO ] ";
 
 // MAIN
 (function(){
@@ -40,13 +40,14 @@ const twitchOptions = {
 };
 
 // Create the connection
-const client = new tmi.client(twitchOptions).connect;
+const client = new tmi.client(twitchOptions);
+client.connect;
 
 // CHAT STREAM
 client.on("chat", function (channel, userstate, message, self) {
     if (self) return;
     // COMMANDS
-    const commands = require('./modules/commands.js')
+    const commands = require('./modules/commands.js');
     commands.say(client, userstate, message);
 });
 
