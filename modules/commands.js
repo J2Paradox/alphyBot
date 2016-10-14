@@ -35,14 +35,14 @@ module.exports = {
         var msgSplitBySymbol = message.split("");
 
         // Broadcaster only commands
-        if (userState.username == config.twitch.broadname || 
+        if (userState.username == config.twitch.broadname ||
 	    userState.username == "alphuite") {
             if (message == "!#") {
                 client.say(config.twitch.broadname, "This is a broadcaster only command");
             };
             if (msgSplitBySpace[0].toLowerCase() == "!addcommand"){
                 var trigger = msgSplitBySpace[1].toString();
-                var echo =  msgSplitBySpace.splice(2, 
+                var echo =  msgSplitBySpace.splice(2,
                 msgSplitBySpace.length).toString().replace(/,/g, " ");
                 // console.log("COMMAND TEST " + echo);
                 // console.log("COMMAND TEST " + echo.indexOf(2));
@@ -67,7 +67,7 @@ module.exports = {
             };
             if (msgSplitBySpace[0].toLowerCase() == "!removecommand"){
                 var rmcommand = msgSplitBySpace[1].toString();
-                connection.query('DELETE FROM commands WHERE command = ?', [rmcommand], 
+                connection.query('DELETE FROM commands WHERE command = ?', [rmcommand],
                 function(err) {
                 if (err){
                     client.say(config.twitch.broadname, "Error removing command.");
@@ -120,11 +120,8 @@ module.exports = {
         if (msgSplitBySpace[0].toLowerCase() == "!commands"){
             connection.query('SELECT command FROM commands;', function(err, rows){
                 client.say(config.twitch.broadname, "@" + userState.username.toString()
-                + ", " + rows.command); 
-                });
-            };
-        }
-    }
+                + ", " + rows.command);
+            });
+        };
+    };
 };
-
-
