@@ -54,7 +54,6 @@ client.on("chat", function (channel, userstate, message, self) {
 // CONSOLE LOG CONNTECTION
 client.on("connected", function (address, port) {
     console.log(dateL + infoL + "alphyBot connected to: " + address);
-    client.whisper(config.twitch.broadname, "Bot connected to the channel!");
     client.say(config.twitch.broadname, "alphyBot connected to the chat @ " +
     dateL + ". Running as version " + config.info.version);
 });
