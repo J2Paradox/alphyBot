@@ -49,6 +49,10 @@ client.on("chat", function (channel, userstate, message, self) {
     // COMMANDS
     const commands = require('./modules/commands.js');
     commands.say(client, userstate, message);
+
+    // osu_getUser
+    const osu_getUser = require('./modules/osu_userinfo.js');
+    osu_getUser.get(client, userstate, message);
 });
 
 // CONSOLE LOG CONNTECTION

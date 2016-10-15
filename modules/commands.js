@@ -117,8 +117,8 @@ module.exports = {
             var query = connection.query('SELECT echo,count FROM commands WHERE command LIKE ?',
             trigger);
             query.on('error', function (err) {
-                client.say(config.twitch.broadname, "@" + userState.username.toString()
-                +", Command not found.");
+                // client.say(config.twitch.broadname, "@" + userState.username.toString()
+                // +", Command not found.");
             });
             query.on('result', function (row) {
                 console.log(row.count);
