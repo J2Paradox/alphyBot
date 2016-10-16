@@ -40,7 +40,8 @@ module.exports = {
             if (message == "!#") {
                 client.say(config.twitch.broadname, "This is a broadcaster only command");
             };
-            if (msgSplitBySpace[0].toLowerCase() == "!addcommand"){
+            if (msgSplitBySpace[0].toLowerCase() == "!addcommand" && 
+                msgSplitBySpace.length > 2){
                 var trigger = msgSplitBySpace[1].toString();
                 var echo =  msgSplitBySpace.splice(2,
                 msgSplitBySpace.length).toString().replace(/,/g, " ");
@@ -65,7 +66,8 @@ module.exports = {
                     };
                 });
             };
-            if (msgSplitBySpace[0].toLowerCase() == "!removecommand"){
+            if (msgSplitBySpace[0].toLowerCase() == "!removecommand" &&
+                msgSplitBySpace.length > 2){
                 var rmcommand = msgSplitBySpace[1].toString();
                 connection.query('DELETE FROM commands WHERE command = ?', [rmcommand],
                 function(err) {
@@ -77,7 +79,8 @@ module.exports = {
                 };
                 });
             };
-            if (msgSplitBySpace[0].toLowerCase() == "!editcommand"){
+            if (msgSplitBySpace[0].toLowerCase() == "!editcommand" &&
+                msgSplitBySpace.length > 2){
                 var trigger = msgSplitBySpace[1].toString();
                 var echo =  msgSplitBySpace.splice(2,
                 msgSplitBySpace.length).toString().replace(/,/g, " ");
@@ -129,7 +132,8 @@ module.exports = {
                 connection.query('UPDATE commands SET count = count +1 WHERE command = ?', [trigger]);
             });
         };
-        if (msgSplitBySpace[0].toLowerCase() == "!count"){
+        if (msgSplitBySpace[0].toLowerCase() == "!count" &&
+            msgSplitBySpace.length > 1){
             var query = connection.query('SELECT count FROM commands WHERE command LIKE ?',
                 msgSplitBySpace[1]);
             query.on('result', function(row){
@@ -138,7 +142,8 @@ module.exports = {
                 + " time(s)");
             });
         };
-        if (msgSplitBySpace[0].toLowerCase() == "!commands"){
+        if (msgSplitBySpace[0].toLowerCase() == "!commands" &&
+            msgSplitBySpace.length > 1){
             connection.query('SELECT command FROM commands;', function(err, rows){
                 var commands = [];
                 Object.keys(rows).forEach(function(k){

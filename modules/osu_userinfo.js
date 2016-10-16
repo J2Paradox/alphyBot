@@ -20,9 +20,12 @@ module.exports = {
     get: function (client, userState, message) {
         var msgSplitBySpace = message.split(" ");
         var msgSplitBySymbol = message.split("");
-        var userToGet = msgSplitBySpace.splice(1,
-        msgSplitBySpace.length).toString().replace(/,/g, " ");
-
+        if (msgSplitBySpace.length == 1){
+            var userToGet = config.osu.username;
+        }else{
+            var userToGet = msgSplitBySpace.splice(1,
+            msgSplitBySpace.length).toString().replace(/,/g, " ");
+        };
         if (msgSplitBySpace[0].toLowerCase() == "!osu"){
             osu.getUser(userToGet, 1, function callback(error, output){
                 console.log(dateL + errorL + error);
