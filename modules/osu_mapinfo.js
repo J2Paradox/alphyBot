@@ -24,6 +24,5 @@ module.exports = {
                 + parse.toString() + " stars");
             });
         };
-        };
     }
 }
