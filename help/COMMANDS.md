@@ -1,4 +1,4 @@
-# Help Documentation for alphyBot
+# Help documentation for alphyBot
 You can find almost everything about the commands of alphyBot here, if you have any further questions; please open a ticket on GitHub or message me on twitch (https://www.twitch.tv/alphuite)!
 ## Managing commands!
 How to manage commands: 
@@ -22,7 +22,7 @@ If the command that you're trying to remove doesn't exist, you will get an error
 ### Updating commands in the database
 Soon™
 
-## Osu Module
+## osu! module
 Here is the usage of the osu module in alphyBot:
 
 ### Get player info
