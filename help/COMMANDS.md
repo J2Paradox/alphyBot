@@ -1,5 +1,5 @@
 # Help Documentation for alphyBot
-You can find almost everything about the commands of alphyBot here, if you have any further questions; please open a ticket on GitHub or message me on twitch!
+You can find almost everything about the commands of alphyBot here, if you have any further questions; please open a ticket on GitHub or message me on twitch (https://www.twitch.tv/alphuite)!
 ## Managing commands!
 How to manage commands: 
 ### Adding commands to the database
@@ -20,7 +20,7 @@ This method doesn't work for commands that aren't in the database, you can get a
 If the command that you're trying to remove doesn't exist, you will get an error message and no command wil be touched.
 
 ### Updating commands in the database
-soon™
+Soon™
 
 ## Osu Module
 Here is the usage of the osu module in alphyBot:
