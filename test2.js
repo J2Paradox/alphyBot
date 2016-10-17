@@ -1,19 +1,23 @@
-var message = 'https://osu.ppy.sh/b/705378?m=0';
-var link = message.split('/');
-console.log(link);
-function LinkValidation(link) {
-    if (link[2].toString() == 'osu.ppy.sh'){
-        if (link[3].toString() == 'b' || link[3].toString() == 's'){
-            var removeQuestionmark = link[4].toString().split('?');
-            var mapID = removeQuestionmark[0]
-            console.log(mapID);
-        };
-    }else if(link[0].toString() == 'osu.ppy.sh'){
-        if (link[1].toString() == 'b' || link[1].toString() == 's'){
-            var removeQuestionmark = link[4].toString().split('?');
-            var mapID = removeQuestionmark[0]
-            console.log(mapID);
-        };
-    };
+var config = require('./json/config.json');
+var osuapi = require('osu-api');
+var osu = new osuapi.Api(config.osu.password);
+osu.setMode(0);
+
+// const url = 'https://osu.ppy.sh/b/705378?m=0';
+const url = 'https://osu.ppy.sh/b/194320&m=1';
+const regex = /^https?:\/\/osu.ppy.sh\/[b|s]\//.test(url);
+console.log(regex);
+if (regex){
+    const final = url.substr(url.lastIndexOf('/') + 1);
+    console.log(final);
+    var id = final.split('?')
+    osu.getBeatmap(id[0].toString(), function callback(error, output){
+        console.log(output);
+        const parse = parseFloat(output.difficultyrating).toFixed(2);
+        console.log(parse);
+        console.log(output.artist + " - " + output.title + " ["
+        + output.version + "], AR " + output.diff_approach + ", " + output.bpm
+        + " BPM, Max Combo " + output.max_combo + ", "
+        + parse.toString() + " stars" );
+    });
 };
-LinkValidation(link);
